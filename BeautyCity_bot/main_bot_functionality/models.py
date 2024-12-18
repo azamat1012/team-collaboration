@@ -9,7 +9,7 @@ class Service(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    duration = models.PositiveIntegerField(help_text="Продолжительность услуги в минутах")
+    duration = models.PositiveIntegerField(help_text="Продолжительность услуги в минутах") # возможно пригодится для выбора времени при записи и выборе специалиста
     category = models.CharField(
         max_length=200,
         choices=[

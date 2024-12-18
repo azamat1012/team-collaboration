@@ -5,8 +5,28 @@ from django.db import models
 #         .......
 
 
-# class Service(models.Model):
-#         .......
+class Service(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.TextField(null=True, blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    duration = models.PositiveIntegerField(help_text="Продолжительность услуги в минутах")
+    category = models.CharField(
+        max_length=200,
+        choices=[
+            ('Стрижка волос', 'Стрижка волос'),
+            ('Борода', 'Борода'),
+            ('Укладка волос', 'Укладка волос'),
+            ('Окрашивание волос', 'Окрашивание волос'),
+            ('Уход за лицом', 'Уход за лицом'),
+        ]
+
+    )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
 
 
 class Specialist(models.Model):

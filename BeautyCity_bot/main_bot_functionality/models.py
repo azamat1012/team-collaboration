@@ -5,8 +5,28 @@ from django.db import models
 #         .......
 
 
-# class Service(models.Model):
-#         .......
+class Service(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.TextField(null=True, blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    duration = models.PositiveIntegerField(help_text="Продолжительность услуги в минутах") # возможно пригодится для выбора времени при записи и выборе специалиста
+    category = models.CharField(
+        max_length=200,
+        choices=[
+            ('Стрижка волос', 'Стрижка волос'),
+            ('Борода', 'Борода'),
+            ('Укладка волос', 'Укладка волос'),
+            ('Окрашивание волос', 'Окрашивание волос'),
+            ('Уход за лицом', 'Уход за лицом'),
+        ]
+
+    )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
 
 
 class Specialist(models.Model):
@@ -32,8 +52,8 @@ class Specialist(models.Model):
 class Appointment(models.Model):
     client_name = models.CharField(max_length=200)
     client_phone = models.CharField(max_length=12)
-    # service = models.ForeignKey(
-    #     Service, on_delete=models.CASCADE, null=True, related_name="appointments")                               -------> ждем модель Service
+    service = models.ForeignKey(
+    Service, on_delete=models.CASCADE, null=True, related_name="appointments")
     # salon = models.ForeignKey(Salon, on_delete=models.CASCADE, null=True, related_name="appointments")           -------> ждем модель Salon
     location = models.CharField(max_length=100)
     specialist = models.ForeignKey(

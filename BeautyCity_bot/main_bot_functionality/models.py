@@ -52,8 +52,8 @@ class Specialist(models.Model):
 class Appointment(models.Model):
     client_name = models.CharField(max_length=200)
     client_phone = models.CharField(max_length=12)
-    # service = models.ForeignKey(
-    #     Service, on_delete=models.CASCADE, null=True, related_name="appointments")                               -------> ждем модель Service
+    service = models.ForeignKey(
+    Service, on_delete=models.CASCADE, null=True, related_name="appointments")
     # salon = models.ForeignKey(Salon, on_delete=models.CASCADE, null=True, related_name="appointments")           -------> ждем модель Salon
     location = models.CharField(max_length=100)
     specialist = models.ForeignKey(

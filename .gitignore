@@ -1,3 +1,4 @@
 .idea/
 new_venv/
 *.pyc
+*.log
